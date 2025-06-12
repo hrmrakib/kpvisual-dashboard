@@ -102,7 +102,7 @@ export default function Home() {
             <div className='p-4 w-full'>
               <Link
                 href='/subscription/edit'
-                className={`w-full block py-3 rounded-md text-center font-medium transition-colors bg-button cursor-pointer  text-secondary hover:bg-cyan-500
+                className={`w-full block py-3 rounded-md text-center font-medium transition-colors bg-button cursor-pointer text-secondary
                 }`}
               >
                 Edit Plan
@@ -162,7 +162,7 @@ export default function Home() {
             <div className='p-4 w-full'>
               <Link
                 href='/subscription/edit'
-                className={`w-full block py-3 rounded-md text-center font-medium transition-colors bg-button cursor-pointer  text-secondary hover:bg-cyan-500
+                className={`w-full block py-3 rounded-md text-center font-medium transition-colors bg-button cursor-pointer text-secondary
                 }`}
               >
                 Edit Plan

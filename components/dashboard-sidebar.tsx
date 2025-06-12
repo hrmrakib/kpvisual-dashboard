@@ -86,33 +86,6 @@ export default function DashboardSidebar() {
                 label='Users'
                 active={pathname === "/users" || pathname.startsWith("/users")}
               />
-              <NavItem
-                href='/services'
-                icon={ShieldAlert}
-                label='Services'
-                active={
-                  pathname === "/services" || pathname.startsWith("/services")
-                }
-              />
-
-              {/* <NavItem
-                href='/issues'
-                icon={ShieldAlert}
-                label='Issues Frequent'
-                active={
-                  pathname === "/issues" || pathname.startsWith("/issues")
-                }
-              /> */}
-
-              {/* <NavItem
-                href='/maintenance'
-                icon={BookCheck}
-                label='Maintenance'
-                active={
-                  pathname === "/maintenance" ||
-                  pathname.startsWith("/maintenance")
-                }
-              /> */}
 
               <NavItem
                 href='/subscription'
@@ -123,15 +96,7 @@ export default function DashboardSidebar() {
                   pathname.startsWith("/subscription")
                 }
               />
-              {/* <NavItem
-                href='/subscription'
-                icon={Crown}
-                label='Subscription'
-                active={
-                  pathname === "/subscription" ||
-                  pathname.startsWith("/subscription")
-                }
-              /> */}
+
               <NavItem
                 href='/setting'
                 icon={Settings}
@@ -156,29 +121,29 @@ export default function DashboardSidebar() {
                 xmlns='http://www.w3.org/2000/svg'
               >
                 <path
-                  d='M9.40039 7.56023C9.71039 3.96023 11.5604 2.49023 15.6104 2.49023H15.7404C20.2104 2.49023 22.0004 4.28023 22.0004 8.75023V15.2702C22.0004 19.7402 20.2104 21.5302 15.7404 21.5302H15.6104C11.5904 21.5302 9.74039 20.0802 9.41039 16.5402'
-                  stroke='#5CE1E6'
-                  strokeWidth='1.5'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
+                  d='M9.4 7.56023C9.71 3.96023 11.56 2.49023 15.61 2.49023H15.74C20.21 2.49023 22 4.28023 22 8.75023V15.2702C22 19.7402 20.21 21.5302 15.74 21.5302H15.61C11.59 21.5302 9.74 20.0802 9.41 16.5402'
+                  stroke='#4F3E19'
+                  stroke-width='1.5'
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
                 />
                 <path
-                  d='M15.5001 12H4.12012'
-                  stroke='#5CE1E6'
-                  strokeWidth='1.5'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
+                  d='M15.5 12H4.12'
+                  stroke='#4F3E19'
+                  stroke-width='1.5'
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
                 />
                 <path
                   d='M6.35 8.65039L3 12.0004L6.35 15.3504'
-                  stroke='#5CE1E6'
-                  strokeWidth='1.5'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
+                  stroke='#4F3E19'
+                  stroke-width='1.5'
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
                 />
               </svg>
 
-              <span className='text-[#5CE1E6] text-lg font-semibold'>
+              <span className='text-primary text-lg font-semibold'>
                 Log out
               </span>
             </button>
