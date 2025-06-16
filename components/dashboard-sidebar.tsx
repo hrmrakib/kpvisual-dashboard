@@ -57,8 +57,8 @@ export default function DashboardSidebar() {
 
   return (
     <>
-      <div className='!bg-[#333333] md:!bg-[#E8D9AD]'>
-        <Sidebar className='border-r-0 border-transparent fixed left-0 h-full z-30 !bg-white md:!bg-transparent'>
+      <div className='!bg-[#F2F6FF] md:!bg-[#F2F6FF]'>
+        <Sidebar className='border-r-0 border-transparent fixed left-0 h-full z-30 !bg-[#F2F6FF] md:!bg-transparent'>
           <SidebarContent>
             <Link
               href='/'
@@ -73,7 +73,7 @@ export default function DashboardSidebar() {
               />
             </Link>
 
-            <SidebarMenu className='px-6 space-y-8'>
+            <SidebarMenu className='px-6 space-y-6'>
               <NavItem
                 href='/'
                 icon={LayoutDashboard}
@@ -173,10 +173,10 @@ function NavItem({ href, icon: Icon, label, active }: NavItemProps) {
         <Link
           href={href}
           className={cn(
-            "flex items-center gap-3 px-4 !py-4 transition-colors rounded-full",
+            "flex items-center gap-3 px-4 !py-5 transition-colors rounded-full",
             active
-              ? "bg-primary text-secondary"
-              : "text-primary hover:bg-[#4d3939] hover:text-[#fff]"
+              ? "bg-[#0249E1] text-secondary"
+              : "text-primary hover:bg-[#0249E1] hover:text-[#fff]"
           )}
         >
           <Icon size={18} />

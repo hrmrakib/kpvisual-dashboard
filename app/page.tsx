@@ -23,11 +23,11 @@ export default function DashboardContent() {
         <div className='ontainer mx-auto'>
           <div className='flex items-center gap-14 flex-wrap'>
             <StatCard title='Total User' value='520' icon='/user.png' />
-            <StatCard
+            {/* <StatCard
               title='Total Earnings'
               value='$12300'
               icon='/earning.png'
-            />
+            /> */}
             {/* <StatCard title='Total Subscriptions' value='1430' /> */}
           </div>
         </div>
@@ -51,9 +51,11 @@ interface StatCardProps {
 
 function StatCard({ title, value, icon }: StatCardProps) {
   return (
-    <Card className='overflow-hidden bg-[#726547] w-full md:max-w-[380px] h-[161px] flex items-center'>
+    <Card className='overflow-hidden bg-background w-full md:max-w-[380px] h-[161px] flex items-center'>
       <CardContent className='flex items-center gap-10 p-6 ml-5'>
-        <Image src={icon} alt='icon' width={80} height={80} />
+        <div className="bg-[#333333]">
+          <Image src={icon} alt='icon' width={80} height={80} />
+        </div>
         <div className='flex flex-col items-center justify-center'>
           <h3 className='mb-2 text-[#B0B0B0]'>{title}</h3>
           <p className='text-[32px] font-semibold text-[#E6E6E6]'>{value}</p>

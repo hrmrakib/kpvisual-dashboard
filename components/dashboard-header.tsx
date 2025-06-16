@@ -26,7 +26,7 @@ export default function DashboardHeader() {
   }
 
   return (
-    <header className='w-[98%] mx-auto sticky top-0 z-20 flex h-[72px] items-center justify-between bg-[#4F3E19] px-4 text-white rounded md:px-6 my-6'>
+    <header className='w-[98%] mx-auto sticky top-0 z-20 flex h-[72px] items-center justify-between bg-[#0249E1] px-4 text-white rounded md:px-6 my-6'>
       <div className='flex items-center gap-4'>
         <SidebarTrigger className='text-white md:hidden' />
         <div>

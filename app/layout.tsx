@@ -24,9 +24,9 @@ export default function RootLayout({
         <Toaster position='top-center' />
         <Providers>
           <SidebarProvider>
-            <div className='flex min-h-screen bg-background w-full'>
+            <div className='flex min-h-screen bg-background2 w-full'>
               <DashboardSidebar />
-              <div className='flex-1 w-full bg-[#EDE1BD]'>
+              <div className='flex-1 w-full bg-background2'>
                 <DashboardHeader />
                 {children}
               </div>

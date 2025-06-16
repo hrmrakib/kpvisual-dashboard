@@ -24,8 +24,8 @@ const config = {
         input: "#F4EED9",
         button: "#4F3E19",
         ring: "hsl(var(--ring))",
-        background: "#E8D9AD",
-        background2: "#EDE1BD",
+        background: "#FFFFFF",
+        background2: "#E6EEFE",
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "#4F3E19",
