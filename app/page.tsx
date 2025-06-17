@@ -53,12 +53,18 @@ function StatCard({ title, value, icon }: StatCardProps) {
   return (
     <Card className='overflow-hidden bg-background w-full md:max-w-[380px] h-[161px] flex items-center'>
       <CardContent className='flex items-center gap-10 p-6 ml-5'>
-        <div className="bg-[#333333]">
-          <Image src={icon} alt='icon' width={80} height={80} />
+        <div className=''>
+          <Image
+            className='object-contain rounded-2xl'
+            src={icon}
+            alt='icon'
+            width={80}
+            height={80}
+          />
         </div>
         <div className='flex flex-col items-center justify-center'>
-          <h3 className='mb-2 text-[#B0B0B0]'>{title}</h3>
-          <p className='text-[32px] font-semibold text-[#E6E6E6]'>{value}</p>
+          <h3 className='mb-2 text-[#2d3034]'>{title}</h3>
+          <p className='text-[32px] font-semibold text-[#3a3737]'>{value}</p>
         </div>
       </CardContent>
     </Card>
@@ -181,27 +187,27 @@ function TransactionTable() {
 
   return (
     <>
-      <div className='overflow-hidden bg-[#726547] rounded-md'>
-        <h2 className='text-[32px] font-medium text-[#E6E6E6] p-6'>
+      <div className='overflow-hidden bg-[#FFFFFF] rounded-md pb-3'>
+        <h2 className='text-[32px] font-medium text-[#101010] p-6'>
           Recent Transactions
         </h2>
         <div className='overflow-x-auto'>
           <Table>
-            <TableHeader className='bg-[#4F3E19] hover:!bg-[#4F3E19] text-[#fafcfc] py-8'>
+            <TableHeader className='bg-[#0249E1] hover:!bg-[#0249E1] text-[#4B5563] py-8'>
               <TableRow className='py-8'>
-                <TableHead className='text-secondary text-lg text-center'>
+                <TableHead className='text-[#FFFFFF] text-lg text-center'>
                   #Tr.ID
                 </TableHead>
-                <TableHead className='text-secondary text-lg text-center'>
+                <TableHead className='text-[#FFFFFF] text-lg text-center'>
                   User Name
                 </TableHead>
-                <TableHead className='text-secondary text-lg text-center'>
+                <TableHead className='text-[#FFFFFF] text-lg text-center'>
                   Subscription
                 </TableHead>
-                <TableHead className='text-secondary text-lg text-center'>
+                <TableHead className='text-[#FFFFFF] text-lg text-center'>
                   Join Date
                 </TableHead>
-                <TableHead className='text-secondary text-lg text-center'>
+                <TableHead className='text-[#FFFFFF] text-lg text-center'>
                   Action
                 </TableHead>
               </TableRow>
@@ -210,19 +216,19 @@ function TransactionTable() {
             <TableBody>
               {currentTransactions.map((transaction) => (
                 <TableRow key={transaction.id}>
-                  <TableCell className='font-medium text-lg text-[#B0B0B0] text-center'>
+                  <TableCell className='font-medium text-lg text-[#4B5563] text-center'>
                     {transaction.id}
                   </TableCell>
-                  <TableCell className='text-lg text-[#B0B0B0] text-center'>
+                  <TableCell className='text-lg text-[#4B5563] text-center'>
                     {transaction.name}
                   </TableCell>
-                  <TableCell className='text-lg text-[#B0B0B0] text-center'>
+                  <TableCell className='text-lg text-[#4B5563] text-center'>
                     {transaction.subscription}
                   </TableCell>
-                  <TableCell className='text-lg text-[#B0B0B0] text-center'>
+                  <TableCell className='text-lg text-[#4B5563] text-center'>
                     {transaction.date}
                   </TableCell>
-                  <TableCell className='text-lg text-[#B0B0B0] text-center'>
+                  <TableCell className='text-lg text-[#4B5563] text-center'>
                     <Button
                       variant='ghost'
                       size='sm'
@@ -238,7 +244,7 @@ function TransactionTable() {
           </Table>
         </div>
 
-        <div className='flex items-center justify-between border-t border-gray-200 bg-[#4F3E19] px-4 py-3 mp-6'>
+        <div className='max-w-sm mx-auto rounded-lg flex items-center justify-between border-t border-gray-200 bg-[#0249E1] px-4 py-3 mt-6'>
           <div className='flex items-center gap-2'>
             <Button
               variant='outline'

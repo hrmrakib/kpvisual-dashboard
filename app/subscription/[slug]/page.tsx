@@ -153,7 +153,7 @@ export default function EditSubscriptionPage({
 
               <Button
                 type='submit'
-                className='w-full bg-[#760C2A] hover:bg-[#760c2ad0] text-white text-lg py-2.5 rounded-md'
+                className='w-full bg-button text-white text-lg py-2.5 rounded-md'
               >
                 Update
               </Button>

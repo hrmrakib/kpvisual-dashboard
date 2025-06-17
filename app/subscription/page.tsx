@@ -39,60 +39,69 @@ export default function Home() {
   };
 
   return (
-    <div className='min-h-screen bg-background2 p-4 md:p-8 flex flex-col'>
+    <div className='min-h-screen bg-[#E6ECF6] p-4 md:p-8 flex flex-col'>
       <div className='w-full'>
         <div className='flex justify-end mb-6'>
           <Link
             href='/subscription/add'
-            className='flex items-center gap-2 bg-primary hover:bg-zinc-700 text-white rounded-full px-4 py-2 transition-colors'
+            className='flex items-center gap-2 bg-button  text-white rounded-full px-4 py-2 transition-colors'
           >
             <Plus size={20} />
             <span>Add New Subscription</span>
           </Link>
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
           {/* Basic Plan */}
-          <div className='max-w-[330px] bg-[#E8D9AD] rounded-lg overflow-hidden'>
-            <div className='px-6 py-8 flex items-start gap-3'>
-              <div className=''>
-                <svg
-                  width='50'
-                  height='50'
-                  viewBox='0 0 50 50'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <rect width='50' height='50' rx='12' fill='#4F3E19' />
-                  <path
-                    d='M31.47 29.83L31.86 32.99C31.96 33.82 31.07 34.4 30.36 33.97L26.9 31.91C26.66 31.77 26.6 31.47 26.73 31.23C27.23 30.31 27.5 29.27 27.5 28.23C27.5 24.57 24.36 21.59 20.5 21.59C19.71 21.59 18.94 21.71 18.22 21.95C17.85 22.07 17.49 21.73 17.58 21.35C18.49 17.71 21.99 15 26.17 15C31.05 15 35 18.69 35 23.24C35 25.94 33.61 28.33 31.47 29.83Z'
-                    fill='#FDFBF7'
-                  />
-                  <path
-                    d='M26 28.2298C26 29.4198 25.56 30.5198 24.82 31.3898C23.83 32.5898 22.26 33.3598 20.5 33.3598L17.89 34.9098C17.45 35.1798 16.89 34.8098 16.95 34.2998L17.2 32.3298C15.86 31.3998 15 29.9098 15 28.2298C15 26.4698 15.94 24.9198 17.38 23.9998C18.27 23.4198 19.34 23.0898 20.5 23.0898C23.54 23.0898 26 25.3898 26 28.2298Z'
-                    fill='#FDFBF7'
-                  />
-                </svg>
-              </div>
-              <div>
-                <h3 className='text-primary font-medium'>Basic Plan</h3>
-                <p className='text-primary text-lg font-bold'>Free</p>
-              </div>
+          <div className='max-w-md bg-[#FFFFFF] rounded-lg overflow-hidden'>
+            <div className='px-6 py-8 flex flex-col items-center gap-3'>
+              <h3 className='text-[#101010] text-center text-xl font-semibold'>
+                Basic Plan
+              </h3>
+              <p className='text-[#101010] text-5xl font-bold'>$2.00</p>
+              <p className='text-sm font-semibold text-[#262626]'>
+                Monthly invoice uploads 100
+              </p>
             </div>
 
-            <div className='border-t border-[#5CE1E6]'>
+            <div className=''>
               <div className='p-4'>
-                <h4 className='text-primary font-medium mb-3'>Features</h4>
+                <h4 className='text-[#262626] font-medium mb-3'>
+                  Let top creative talent come to you by posting your job
+                  listing on #1 Design Jobs Board.
+                </h4>
                 <ul className='space-y-5'>
                   {features.map((feature, index) => (
                     <li
                       key={index}
-                      className='flex items-center gap-2 text-gray-300'
+                      className='flex items-center gap-2 text-[#262626]'
                     >
-                      <div className='bg-primary rounded-full p-1'>
-                        <Check className='h-4 w-4 text-white' />
+                      <div className='rounded-full p-1'>
+                        <svg
+                          width='18'
+                          height='18'
+                          viewBox='0 0 18 18'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <g clip-path='url(#clip0_160_2548)'>
+                            <path
+                              fill-rule='evenodd'
+                              clip-rule='evenodd'
+                              d='M18.0011 4.85452C18.0011 5.14486 17.885 5.4352 17.676 5.64425L7.68823 15.632C7.47918 15.841 7.18884 15.9572 6.8985 15.9572C6.60816 15.9572 6.31782 15.841 6.10877 15.632L0.325182 9.84838C0.116136 9.63934 0 9.349 0 9.05866C0 8.76832 0.116136 8.47797 0.325182 8.26893L1.90464 6.68947C2.11368 6.48043 2.40402 6.36429 2.69436 6.36429C2.9847 6.36429 3.27505 6.48043 3.48409 6.68947L6.8985 10.1155L14.517 2.48534C14.7261 2.27629 15.0164 2.16016 15.3068 2.16016C15.5971 2.16016 15.8875 2.27629 16.0965 2.48534L17.676 4.06479C17.885 4.27384 18.0011 4.56418 18.0011 4.85452Z'
+                              fill='#0249E1'
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id='clip0_160_2548'>
+                              <rect width='18' height='18' fill='white' />
+                            </clipPath>
+                          </defs>
+                        </svg>
                       </div>
-                      <span className='text-base text-primary'>{feature}</span>
+                      <span className='text-base text-[#262626]'>
+                        {feature}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -111,48 +120,55 @@ export default function Home() {
           </div>
 
           {/* Premium Plan */}
-          <div className='max-w-[330px] bg-[#E8D9AD] rounded-lg overflow-hidden'>
-            <div className='px-6 py-8 flex items-start gap-3'>
-              <div className=''>
-                <svg
-                  width='50'
-                  height='50'
-                  viewBox='0 0 50 50'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <rect width='50' height='50' rx='12' fill='#4F3E19' />
-                  <path
-                    d='M31.47 29.83L31.86 32.99C31.96 33.82 31.07 34.4 30.36 33.97L26.9 31.91C26.66 31.77 26.6 31.47 26.73 31.23C27.23 30.31 27.5 29.27 27.5 28.23C27.5 24.57 24.36 21.59 20.5 21.59C19.71 21.59 18.94 21.71 18.22 21.95C17.85 22.07 17.49 21.73 17.58 21.35C18.49 17.71 21.99 15 26.17 15C31.05 15 35 18.69 35 23.24C35 25.94 33.61 28.33 31.47 29.83Z'
-                    fill='#FDFBF7'
-                  />
-                  <path
-                    d='M26 28.2298C26 29.4198 25.56 30.5198 24.82 31.3898C23.83 32.5898 22.26 33.3598 20.5 33.3598L17.89 34.9098C17.45 35.1798 16.89 34.8098 16.95 34.2998L17.2 32.3298C15.86 31.3998 15 29.9098 15 28.2298C15 26.4698 15.94 24.9198 17.38 23.9998C18.27 23.4198 19.34 23.0898 20.5 23.0898C23.54 23.0898 26 25.3898 26 28.2298Z'
-                    fill='#FDFBF7'
-                  />
-                </svg>
-              </div>
-              <div>
-                <h3 className='text-primary font-medium'>Premium Plan</h3>
-                <p className='text-primary text-lg font-bold'>
-                  4.9 /month (39€/year)
-                </p>
-              </div>
+          <div className='max-w-md bg-[#FFFFFF] rounded-lg overflow-hidden'>
+            <div className='px-6 py-8 flex flex-col items-center gap-3'>
+              <h3 className='text-[#101010] text-center text-xl font-semibold'>
+                Premium Plan
+              </h3>
+              <p className='text-[#101010] text-5xl font-bold'>$8.00</p>
+              <p className='text-sm font-semibold text-[#262626]'>
+                Monthly invoice uploads 100
+              </p>
             </div>
 
-            <div className='border-t border-[#5CE1E6]'>
+            <div className=''>
               <div className='p-4'>
-                <h4 className='text-primary font-medium mb-3'>Features</h4>
+                <h4 className='text-[#262626] font-medium mb-3'>
+                  Let top creative talent come to you by posting your job
+                  listing on #1 Design Jobs Board.
+                </h4>
                 <ul className='space-y-5'>
                   {features.map((feature, index) => (
                     <li
                       key={index}
-                      className='flex items-center gap-2 text-gray-300'
+                      className='flex items-center gap-2 text-[#262626]'
                     >
-                      <div className='bg-primary rounded-full p-1'>
-                        <Check className='h-4 w-4 text-white' />
+                      <div className='rounded-full p-1'>
+                        <svg
+                          width='18'
+                          height='18'
+                          viewBox='0 0 18 18'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <g clip-path='url(#clip0_160_2548)'>
+                            <path
+                              fill-rule='evenodd'
+                              clip-rule='evenodd'
+                              d='M18.0011 4.85452C18.0011 5.14486 17.885 5.4352 17.676 5.64425L7.68823 15.632C7.47918 15.841 7.18884 15.9572 6.8985 15.9572C6.60816 15.9572 6.31782 15.841 6.10877 15.632L0.325182 9.84838C0.116136 9.63934 0 9.349 0 9.05866C0 8.76832 0.116136 8.47797 0.325182 8.26893L1.90464 6.68947C2.11368 6.48043 2.40402 6.36429 2.69436 6.36429C2.9847 6.36429 3.27505 6.48043 3.48409 6.68947L6.8985 10.1155L14.517 2.48534C14.7261 2.27629 15.0164 2.16016 15.3068 2.16016C15.5971 2.16016 15.8875 2.27629 16.0965 2.48534L17.676 4.06479C17.885 4.27384 18.0011 4.56418 18.0011 4.85452Z'
+                              fill='#0249E1'
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id='clip0_160_2548'>
+                              <rect width='18' height='18' fill='white' />
+                            </clipPath>
+                          </defs>
+                        </svg>
                       </div>
-                      <span className='text-base text-primary'>{feature}</span>
+                      <span className='text-base text-[#262626]'>
+                        {feature}
+                      </span>
                     </li>
                   ))}
                 </ul>

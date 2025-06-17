@@ -138,7 +138,6 @@ function TransactionTable() {
   const openUserModal = (user: any) => {
     setSelectedUser(user);
     setIsModalOpen(true);
-
   };
 
   const handlePageChange = (page: number) => {
@@ -147,30 +146,27 @@ function TransactionTable() {
     }
   };
 
-
   return (
     <>
-      <div className='overflow-hidden bg-background2 rounded-md'>
-        <h2 className='text-[32px] font-medium text-primary py-6'>
-          User List
-        </h2>
+      <div className='overflow-hidden bg-[#FFF] rounded-md'>
+        <h2 className='text-[32px] font-medium text-primary py-6 px-3'>User List</h2>
         <div className='overflow-x-auto'>
           <Table>
-            <TableHeader className='bg-primary hover:!bg-[#5ce1e6d5] text-[#275F61] py-8'>
+            <TableHeader className='bg-[#0249E1] hover:!bg-[#5ce1e6d5] text-[#FFF] py-8'>
               <TableRow className='py-8'>
-                <TableHead className='text-[#275F61] text-lg text-center'>
+                <TableHead className='text-[#FFF] text-lg text-center'>
                   #Tr.ID
                 </TableHead>
-                <TableHead className='text-[#275F61] text-lg text-center'>
+                <TableHead className='text-[#FFF] text-lg text-center'>
                   User Name
                 </TableHead>
-                <TableHead className='text-[#275F61] text-lg text-center'>
+                <TableHead className='text-[#FFF] text-lg text-center'>
                   Subscription
                 </TableHead>
-                <TableHead className='text-[#275F61] text-lg text-center'>
+                <TableHead className='text-[#FFF] text-lg text-center'>
                   Join Date
                 </TableHead>
-                <TableHead className='text-[#275F61] text-lg text-center'>
+                <TableHead className='text-[#FFF] text-lg text-center'>
                   Action
                 </TableHead>
               </TableRow>
@@ -207,7 +203,7 @@ function TransactionTable() {
           </Table>
         </div>
 
-        <div className='flex items-center justify-between border-t border-gray-200 bg-[#333333] px-4 py-3 mp-6'>
+        <div className='max-w-sm mx-auto flex items-center justify-between border-t border-gray-200 rounded-lg bg-[#0249E1] px-4 py-3 mp-6'>
           <div className='flex items-center gap-2'>
             <Button
               variant='outline'

@@ -91,7 +91,7 @@ export default function ChangePasswordPage() {
 
             <form
               onSubmit={handleSubmit}
-              className='space-y-4 bg-primary rounded-xl p-6'
+              className='space-y-4 bg-[#FFF] rounded-xl p-6'
             >
               {error && (
                 <Alert variant='destructive'>
@@ -103,7 +103,7 @@ export default function ChangePasswordPage() {
               <div className='space-y-2 rounded-xl p-6'>
                 <Label
                   htmlFor='currentPassword'
-                  className='text-lg font-medium text-[#E6E6E6]'
+                  className='text-lg font-medium text-[#101010]'
                 >
                   Current Password
                 </Label>
@@ -114,11 +114,11 @@ export default function ChangePasswordPage() {
                     type={showCurrentPassword ? "text" : "password"}
                     value={formData.currentPassword}
                     onChange={handleChange}
-                    className='text-lg font-medium text-[#E6E6E6] bg-transparent border'
+                    className='text-lg font-medium text-[#101010] bg-transparent border'
                   />
                   <button
                     type='button'
-                    className='absolute right-3 top-1/2 -translate-y-1/2 text-[#E6E6E6]'
+                    className='absolute right-3 top-1/2 -translate-y-1/2 text-[#101010]'
                     onClick={() => setShowCurrentPassword(!showCurrentPassword)}
                   >
                     {showCurrentPassword ? (
@@ -133,7 +133,7 @@ export default function ChangePasswordPage() {
               <div className='space-y-2 rounded-xl p-6'>
                 <Label
                   htmlFor='newPassword'
-                  className='text-lg font-medium text-[#E6E6E6]'
+                  className='text-lg font-medium text-[#101010]'
                 >
                   New Password
                 </Label>
@@ -144,11 +144,11 @@ export default function ChangePasswordPage() {
                     type={showNewPassword ? "text" : "password"}
                     value={formData.newPassword}
                     onChange={handleChange}
-                    className='text-lg font-medium text-[#E6E6E6] bg-transparent border'
+                    className='text-lg font-medium text-[#101010] bg-transparent border'
                   />
                   <button
                     type='button'
-                    className='absolute right-3 top-1/2 -translate-y-1/2 text-[#E6E6E6]'
+                    className='absolute right-3 top-1/2 -translate-y-1/2 text-[#101010]'
                     onClick={() => setShowNewPassword(!showNewPassword)}
                   >
                     {showNewPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -159,7 +159,7 @@ export default function ChangePasswordPage() {
               <div className='space-y-2 rounded-xl p-6'>
                 <Label
                   htmlFor='confirmPassword'
-                  className='text-lg font-medium text-[#E6E6E6]'
+                  className='text-lg font-medium text-[#101010]'
                 >
                   Confirm New Password
                 </Label>
@@ -170,11 +170,11 @@ export default function ChangePasswordPage() {
                     type={showConfirmPassword ? "text" : "password"}
                     value={formData.confirmPassword}
                     onChange={handleChange}
-                    className='text-lg font-medium text-[#E6E6E6] bg-transparent border'
+                    className='text-lg font-medium text-[#101010] bg-transparent border'
                   />
                   <button
                     type='button'
-                    className='absolute right-3 top-1/2 -translate-y-1/2 text-lg font-medium text-[#E6E6E6]'
+                    className='absolute right-3 top-1/2 -translate-y-1/2 text-lg font-medium text-[#101010]'
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   >
                     {showConfirmPassword ? (
@@ -189,7 +189,7 @@ export default function ChangePasswordPage() {
               <div className='pt-2 flex items-center justify-end'>
                 <Button
                   type='submit'
-                  className='bg-background text-lg font-semibold text-primary'
+                  className='bg-button text-lg font-semibold text-[#fff]'
                 >
                   Update Password
                 </Button>
