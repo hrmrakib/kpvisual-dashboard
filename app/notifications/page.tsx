@@ -87,7 +87,7 @@ import { ArrowLeft } from "lucide-react";
 import NotificationItem from "@/components/notification-item";
 
 export default function NotificationsPage() {
-  // Sample notification data
+  // Sample notification data here
   const notifications = [
     {
       id: 1,
