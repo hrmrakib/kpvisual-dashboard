@@ -124,7 +124,7 @@ export default function ForgetPassword() {
             <p className='text-primary text-lg'>
               Back to{" "}
               <Link
-                href='/signin'
+                href='/'
                 className='text-primary text-lg font-medium hover:underline'
               >
                 Sign In

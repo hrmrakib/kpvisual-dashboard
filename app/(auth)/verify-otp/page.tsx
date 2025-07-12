@@ -85,7 +85,7 @@ export default function VerifyOTP() {
         otp: otpValue,
       }).unwrap();
 
-      if (res.status === "success") {
+      if (res.success) {
         localStorage.setItem("access_token", res.access_token);
         toast.success(res.message);
         router.push("/");
@@ -209,7 +209,9 @@ export default function VerifyOTP() {
               </p>
             </div> */}
 
-            <p className="text-lg text-center text-primary">Please enter the OTP we have sent you in your email.</p>
+            <p className='text-lg text-center text-primary'>
+              Please enter the OTP we have sent you in your email.
+            </p>
 
             <div className='text-center'>
               <Link

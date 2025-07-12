@@ -323,7 +323,7 @@ export default function SignUpPage() {
             <p className='text-primary text-lg'>
               I have an account?{" "}
               <Link
-                href='/signin'
+                href='/lo'
                 className='text-primary text-lg font-medium hover:underline'
               >
                 Sign In Now

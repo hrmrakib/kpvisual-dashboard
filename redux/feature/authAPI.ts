@@ -5,7 +5,7 @@ const authAPI = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation<any, any>({
       query: (body) => ({
-        url: "/api-auth/admin_login/",
+        url: "api/v1/account/login/",
         method: "POST",
         body,
       }),

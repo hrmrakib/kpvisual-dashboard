@@ -45,7 +45,7 @@ export default function DashboardSidebar() {
   };
 
   if (
-    pathname === "/signin" ||
+    pathname === "/login" ||
     pathname === "/create-account" ||
     pathname === "/forget-password" ||
     pathname === "/verify-password" ||

@@ -145,8 +145,8 @@ export default function SignInPage() {
           <div className='text-center mt-6'>
             <p className='text-slate-600'>
               Back to {"  "}
-              <Link
-                href='/signin'
+              <Link 
+                href='/'
                 className='text-blue-600 font-medium hover:underline'
               >
                 Sign In

@@ -1,14 +1,12 @@
 "use client";
 
-import type React from "react";
-
 import { useState, type FormEvent } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
 import { useLoginMutation } from "@/redux/feature/authAPI";
 import { useRouter } from "next/navigation";
 import { saveTokens } from "@/service/authService";
+import { toast } from "sonner";
 
 export default function SignInPage() {
   const [formData, setFormData] = useState({
@@ -72,10 +70,10 @@ export default function SignInPage() {
         password: formData.password,
       });
 
-      if (res?.data?.status === "success") {
+      if (res?.data?.success) {
         localStorage.setItem("access_token", res?.data?.access_token);
-        await saveTokens(res?.data?.token);
-        // setSubmitSuccess(true);
+        saveTokens(res?.data?.access_token);
+        toast.success(res?.data?.message);
         router.push("/");
       }
 
@@ -106,7 +104,7 @@ export default function SignInPage() {
         <div className='w-full md:w-1/2 max-w-lg mx-auto bg-background px-6 py-16 rounded-xl'>
           <div className='text-center mb-6'>
             <h1 className='text-[32px] font-bold text-primary mb-2'>
-              Sign In Now
+              Login Now
             </h1>
             <p className='text-primary text-lg'>
               Welcome back! Select method log in
@@ -147,7 +145,7 @@ export default function SignInPage() {
                   placeholder='Enter your email...'
                   value={formData.email}
                   onChange={handleChange}
-                  className={`bg-input text-primary pl-12 w-full p-3  placeholder:text-[#B0B0B0] ${
+                  className={`bg-input border text-primary pl-12 w-full p-3  placeholder:text-[#B0B0B0] ${
                     errors.email ? "border-red-500" : "border-slate-300"
                   } rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500`}
                   required
@@ -184,7 +182,7 @@ export default function SignInPage() {
                     placeholder='Enter your password...'
                     value={formData.password}
                     onChange={handleChange}
-                    className={`bg-input text-primary pl-12 w-full p-3  placeholder:text-[#B0B0B0] ${
+                    className={`bg-input border text-primary pl-12 w-full p-3  placeholder:text-[#B0B0B0] ${
                       errors.password ? "border-red-500" : "border-slate-300"
                     } rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     required
