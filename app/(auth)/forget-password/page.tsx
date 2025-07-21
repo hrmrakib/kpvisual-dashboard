@@ -99,7 +99,7 @@ export default function ForgetPassword() {
                   placeholder='Enter your email...'
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`bg-input text-primary pl-12 w-full p-3  placeholder:text-[#B0B0B0] ${
+                  className={`bg-input text-primary border pl-12 w-full p-3  placeholder:text-[#B0B0B0] ${
                     errors.email ? "border-red-500" : "border-slate-300"
                   } rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500`}
                   required

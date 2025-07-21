@@ -1,5 +1,4 @@
-import { send } from "process";
-import baseApi from "../api/baseAPI";
+import baseApi from "@/redux/api/baseAPI";
 
 const authAPI = baseApi.injectEndpoints({
   endpoints: (builder) => ({

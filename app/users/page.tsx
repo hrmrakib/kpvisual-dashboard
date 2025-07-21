@@ -12,11 +12,12 @@ import {
 } from "@/components/ui/table";
 import { useState } from "react";
 import UserDetailsModal from "@/components/user-details-modal";
-import {
-  useGetAllUsersQuery,
-  useGetUserByIdQuery,
-} from "@/redux/feature/userAPI";
+// import {
+//   useGetAllUsersQuery,
+//   useGetUserByIdQuery,
+// } from "@/redux/feature/userAPI";
 import DetailRow from "@/components/DetailRow";
+import { useGetUserListQuery } from "@/redux/feature/userlist/userAPI";
 
 interface IUser {
   id: number;
@@ -39,8 +40,10 @@ function TransactionTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<any>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10); // Configurable items per page
-  const { data: users, isLoading } = useGetAllUsersQuery({});
+  const [itemsPerPage] = useState(10);
+  const { data: users, isLoading } = useGetUserListQuery({});
+
+  console.log("users", users);
 
   const transactions = [
     {
@@ -149,7 +152,9 @@ function TransactionTable() {
   return (
     <>
       <div className='overflow-hidden bg-[#FFF] rounded-md'>
-        <h2 className='text-[32px] font-medium text-primary py-6 px-3'>User List</h2>
+        <h2 className='text-[32px] font-medium text-primary py-6 px-3'>
+          User List
+        </h2>
         <div className='overflow-x-auto'>
           <Table>
             <TableHeader className='bg-[#0249E1] hover:!bg-[#5ce1e6d5] text-[#FFF] py-8'>
@@ -173,7 +178,7 @@ function TransactionTable() {
             </TableHeader>
 
             <TableBody>
-              {users?.data?.map((user: IUser) => (
+              {/* {users?.data?.map((user: IUser) => (
                 <TableRow key={user?.id}>
                   <TableCell className='font-medium text-lg text-[#B0B0B0] text-center'>
                     {user?.id}
@@ -198,7 +203,7 @@ function TransactionTable() {
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))} */}
             </TableBody>
           </Table>
         </div>

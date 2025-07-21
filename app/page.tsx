@@ -14,6 +14,7 @@ import {
 import { useState } from "react";
 import UserDetailsModal from "@/components/user-details-modal";
 import Image from "next/image";
+import { useGetAllSubscriberedUsersQuery } from "@/redux/feature/userlist/userAPI";
 
 export default function DashboardContent() {
   return (
@@ -70,7 +71,16 @@ function StatCard({ title, value, icon }: StatCardProps) {
     </Card>
   );
 }
-
+interface UserSubscription {
+  id: number;
+  is_yearly: boolean;
+  stripe_session_id: string;
+  active: boolean;
+  started_at: string;
+  expires_at: string;
+  user: number;
+  plan: number;
+}
 function TransactionTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<any>(null);
@@ -173,6 +183,10 @@ function TransactionTable() {
   const [chartData, setChartData] = useState<
     { month: string; amount: number }[]
   >([]);
+  const { data: subscriberedUsers } =
+    useGetAllSubscriberedUsersQuery(undefined);
+
+  console.log("data", subscriberedUsers?.results);
 
   const openUserModal = (user: any) => {
     setSelectedUser(user);
@@ -214,32 +228,34 @@ function TransactionTable() {
             </TableHeader>
 
             <TableBody>
-              {currentTransactions.map((transaction) => (
-                <TableRow key={transaction.id}>
-                  <TableCell className='font-medium text-lg text-[#4B5563] text-center'>
-                    {transaction.id}
-                  </TableCell>
-                  <TableCell className='text-lg text-[#4B5563] text-center'>
-                    {transaction.name}
-                  </TableCell>
-                  <TableCell className='text-lg text-[#4B5563] text-center'>
-                    {transaction.subscription}
-                  </TableCell>
-                  <TableCell className='text-lg text-[#4B5563] text-center'>
-                    {transaction.date}
-                  </TableCell>
-                  <TableCell className='text-lg text-[#4B5563] text-center'>
-                    <Button
-                      variant='ghost'
-                      size='sm'
-                      className='h-8 w-8 p-0'
-                      onClick={() => openUserModal(transaction)}
-                    >
-                      <Info className='h-6 w-6' />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {subscriberedUsers?.results?.map(
+                (transaction: UserSubscription) => (
+                  <TableRow key={transaction.id}>
+                    <TableCell className='font-medium text-lg text-[#4B5563] text-center'>
+                      {transaction.id}
+                    </TableCell>
+                    <TableCell className='text-lg text-[#4B5563] text-center'>
+                      {transaction?.user}
+                    </TableCell>
+                    <TableCell className='text-lg text-[#4B5563] text-center'>
+                      {transaction?.user}
+                    </TableCell>
+                    <TableCell className='text-lg text-[#4B5563] text-center'>
+                      {transaction?.is_yearly ? "Yearly" : "Monthly"}
+                    </TableCell>
+                    <TableCell className='text-lg text-[#4B5563] text-center'>
+                      <Button
+                        variant='ghost'
+                        size='sm'
+                        className='h-8 w-8 p-0'
+                        onClick={() => openUserModal(transaction)}
+                      >
+                        <Info className='h-6 w-6' />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                )
+              )}
             </TableBody>
           </Table>
         </div>

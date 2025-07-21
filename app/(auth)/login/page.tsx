@@ -3,10 +3,10 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
-import { useLoginMutation } from "@/redux/feature/authAPI";
 import { useRouter } from "next/navigation";
 import { saveTokens } from "@/service/authService";
 import { toast } from "sonner";
+import { useLoginMutation } from "@/redux/feature/auth/authAPI";
 
 export default function SignInPage() {
   const [formData, setFormData] = useState({
@@ -78,8 +78,6 @@ export default function SignInPage() {
       }
 
       // setSubmitSuccess(true);
-
-      // In a real app, you would redirect to dashboard or home page after successful login
     } catch (error) {
       console.error("Error submitting form:", error);
       setErrors({ submit: "Invalid credentials. Please try again." });

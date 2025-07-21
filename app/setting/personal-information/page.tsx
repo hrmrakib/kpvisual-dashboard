@@ -3,8 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Edit } from "lucide-react";
-import { useGetProfileQuery } from "@/redux/feature/settingAPI";
 import { useEffect, useState } from "react";
+import { useGetProfileQuery } from "@/redux/feature/setting/settingAPI";
 
 export default function PersonalInformationPage() {
   const [user, setUser] = useState({
