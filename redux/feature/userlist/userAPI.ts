@@ -2,7 +2,7 @@ import baseApi from "@/redux/api/baseAPI";
 
 const userAPI = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getUserList: builder.query<any, any>({
+    getUserList: builder.query<any, any>({ 
       query: () => ({
         url: "api/v1/account/dashboard/",
         headers: {

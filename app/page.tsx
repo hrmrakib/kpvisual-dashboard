@@ -1,6 +1,6 @@
 "use client";
 
-import { Info } from "lucide-react";
+import { Info, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -15,6 +15,9 @@ import { useState } from "react";
 import UserDetailsModal from "@/components/user-details-modal";
 import Image from "next/image";
 import { useGetAllSubscriberedUsersQuery } from "@/redux/feature/userlist/userAPI";
+import DetailRow from "@/components/DetailRow";
+
+let totalUsers: number | string = 0;
 
 export default function DashboardContent() {
   return (
@@ -23,21 +26,12 @@ export default function DashboardContent() {
         {/* <h2 className='mb-4 text-[32px] font-medium text-primary'>Overview</h2> */}
         <div className='ontainer mx-auto'>
           <div className='flex items-center gap-14 flex-wrap'>
-            <StatCard title='Total User' value='520' icon='/user.png' />
-            {/* <StatCard
-              title='Total Earnings'
-              value='$12300'
-              icon='/earning.png'
-            /> */}
-            {/* <StatCard title='Total Subscriptions' value='1430' /> */}
+            <StatCard title='Total User' value={totalUsers} icon='/user.png' />
           </div>
         </div>
       </section>
 
       <section>
-        {/* <h2 className='mb-4 text-[28px] font-medium text-primary'>
-          Transaction
-        </h2> */}
         <TransactionTable />
       </section>
     </main>
@@ -46,7 +40,7 @@ export default function DashboardContent() {
 
 interface StatCardProps {
   title: string;
-  value: string;
+  value: string | number;
   icon: string;
 }
 
@@ -64,23 +58,34 @@ function StatCard({ title, value, icon }: StatCardProps) {
           />
         </div>
         <div className='flex flex-col items-center justify-center'>
-          <h3 className='mb-2 text-[#2d3034]'>{title}</h3>
+          <h3 className='mb-2 text-lg text-[#2d3034]'>{title}</h3>
           <p className='text-[32px] font-semibold text-[#3a3737]'>{value}</p>
         </div>
       </CardContent>
     </Card>
   );
 }
-interface UserSubscription {
+interface SubscriptionUser {
   id: number;
+  email: string;
+  full_name: string;
+  profile_pic: string;
+  mobile_no: string | null;
+  location: string | null;
+}
+
+interface Subscription {
+  id: number;
+  user: SubscriptionUser;
+  price: string;
   is_yearly: boolean;
   stripe_session_id: string;
   active: boolean;
   started_at: string;
   expires_at: string;
-  user: number;
   plan: number;
 }
+
 function TransactionTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<any>(null);
@@ -186,7 +191,9 @@ function TransactionTable() {
   const { data: subscriberedUsers } =
     useGetAllSubscriberedUsersQuery(undefined);
 
-  console.log("data", subscriberedUsers?.results);
+  console.log("subscriberedUsers", subscriberedUsers?.count);
+
+  totalUsers = subscriberedUsers?.count || 0;
 
   const openUserModal = (user: any) => {
     setSelectedUser(user);
@@ -228,34 +235,32 @@ function TransactionTable() {
             </TableHeader>
 
             <TableBody>
-              {subscriberedUsers?.results?.map(
-                (transaction: UserSubscription) => (
-                  <TableRow key={transaction.id}>
-                    <TableCell className='font-medium text-lg text-[#4B5563] text-center'>
-                      {transaction.id}
-                    </TableCell>
-                    <TableCell className='text-lg text-[#4B5563] text-center'>
-                      {transaction?.user}
-                    </TableCell>
-                    <TableCell className='text-lg text-[#4B5563] text-center'>
-                      {transaction?.user}
-                    </TableCell>
-                    <TableCell className='text-lg text-[#4B5563] text-center'>
-                      {transaction?.is_yearly ? "Yearly" : "Monthly"}
-                    </TableCell>
-                    <TableCell className='text-lg text-[#4B5563] text-center'>
-                      <Button
-                        variant='ghost'
-                        size='sm'
-                        className='h-8 w-8 p-0'
-                        onClick={() => openUserModal(transaction)}
-                      >
-                        <Info className='h-6 w-6' />
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                )
-              )}
+              {subscriberedUsers?.results?.map((transaction: Subscription) => (
+                <TableRow key={transaction.id}>
+                  <TableCell className='font-medium text-lg text-[#4B5563] text-center'>
+                    {transaction.id}
+                  </TableCell>
+                  <TableCell className='text-lg text-[#4B5563] text-center'>
+                    {transaction?.user?.full_name}
+                  </TableCell>
+                  <TableCell className='text-lg text-[#4B5563] text-center'>
+                    {transaction?.user?.email}
+                  </TableCell>
+                  <TableCell className='text-lg text-[#4B5563] text-center'>
+                    {transaction?.is_yearly ? "Yearly" : "Monthly"}
+                  </TableCell>
+                  <TableCell className='text-lg text-[#4B5563] text-center'>
+                    <Button
+                      variant='ghost'
+                      size='sm'
+                      className='h-8 w-8 p-0'
+                      onClick={() => openUserModal(transaction)}
+                    >
+                      <Info className='h-6 w-6' />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </div>
@@ -334,11 +339,52 @@ function TransactionTable() {
       </div>
 
       {isModalOpen && selectedUser && (
-        <UserDetailsModal
-          user={selectedUser}
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-        />
+        <div className='fixed inset-0 z-50 flex items-center justify-center bg-transparent'>
+          <div className='relative w-full max-w-md rounded-md bg-[#ffffff] px-6 py-6 shadow-lg'>
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className='absolute right-4 top-4 text-gray-500 hover:text-gray-700'
+            >
+              <X className='h-5 w-5' />
+              <span className='sr-only'>Close</span>
+            </button>
+
+            <h2 className='mb-6 py-5 text-center text-[30px] font-semibold text-[#000000]'>
+              User Details
+            </h2>
+
+            <div className='space-y-6'>
+              <DetailRow label='User ID:' value={selectedUser?.id} />
+              <DetailRow
+                label='Started At'
+                value={selectedUser?.started_at?.split("T")[0]}
+              />
+              <DetailRow
+                label='Expires At'
+                value={selectedUser?.expires_at?.split("T")[0]}
+              />
+              <DetailRow
+                label='User Name'
+                value={selectedUser?.user?.full_name}
+              />
+              <DetailRow
+                label='Transaction Amount'
+                value={selectedUser?.price}
+              />
+              <DetailRow
+                label='Active'
+                value={selectedUser?.active ? "✅ Active" : "❌ Inactive"}
+              />
+            </div>
+
+            <Button
+              onClick={() => setIsModalOpen(false)}
+              className='mt-6 w-full bg-[#3a49d3] hover:bg-[#4456fd]'
+            >
+              Okay
+            </Button>
+          </div>
+        </div>
       )}
     </>
   );

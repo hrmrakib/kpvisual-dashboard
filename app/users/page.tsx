@@ -19,11 +19,14 @@ import UserDetailsModal from "@/components/user-details-modal";
 import DetailRow from "@/components/DetailRow";
 import { useGetUserListQuery } from "@/redux/feature/userlist/userAPI";
 
-interface IUser {
+interface User {
   id: number;
-  full_name: string;
   email: string;
-  created_on: string;
+  full_name: string;
+  profile_pic: string | null;
+  mobile_no: string | null;
+  location: string | null;
+  date_joined: string;
 }
 
 export default function DashboardContent() {
@@ -43,7 +46,7 @@ function TransactionTable() {
   const [itemsPerPage] = useState(10);
   const { data: users, isLoading } = useGetUserListQuery({});
 
-  console.log("users", users);
+  console.log("users", users?.results);
 
   const transactions = [
     {
@@ -149,6 +152,8 @@ function TransactionTable() {
     }
   };
 
+  console.log(selectedUser);
+
   return (
     <>
       <div className='overflow-hidden bg-[#FFF] rounded-md'>
@@ -178,21 +183,21 @@ function TransactionTable() {
             </TableHeader>
 
             <TableBody>
-              {/* {users?.data?.map((user: IUser) => (
+              {users?.results?.map((user: User) => (
                 <TableRow key={user?.id}>
-                  <TableCell className='font-medium text-lg text-[#B0B0B0] text-center'>
+                  <TableCell className='font-medium text-lg text-[#141414] text-center'>
                     {user?.id}
                   </TableCell>
-                  <TableCell className='text-lg text-[#B0B0B0] text-center'>
+                  <TableCell className='text-lg text-[#141414] text-center'>
                     {user?.full_name}
                   </TableCell>
-                  <TableCell className='text-lg text-[#B0B0B0] text-center'>
+                  <TableCell className='text-lg text-[#141414] text-center'>
                     {user?.email}
                   </TableCell>
-                  <TableCell className='text-lg text-[#B0B0B0] text-center'>
-                    {user?.created_on.split("T")[0]}
+                  <TableCell className='text-lg text-[#141414] text-center'>
+                    {user?.date_joined.split("T")[0]}
                   </TableCell>
-                  <TableCell className='text-lg text-[#B0B0B0] text-center'>
+                  <TableCell className='text-lg text-[#141414] text-center'>
                     <Button
                       variant='ghost'
                       size='sm'
@@ -203,12 +208,12 @@ function TransactionTable() {
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))} */}
+              ))}
             </TableBody>
           </Table>
         </div>
 
-        <div className='max-w-sm mx-auto flex items-center justify-between border-t border-gray-200 rounded-lg bg-[#0249E1] px-4 py-3 mp-6'>
+        {/* <div className='max-w-sm mx-auto flex items-center justify-between border-t border-gray-200 rounded-lg bg-[#0249E1] px-4 py-3 mp-6'>
           <div className='flex items-center gap-2'>
             <Button
               variant='outline'
@@ -278,12 +283,12 @@ function TransactionTable() {
               </svg>
             </Button>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {isModalOpen && selectedUser && (
-        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50'>
-          <div className='relative w-full max-w-md rounded-md bg-[#000000] px-6 py-6 shadow-lg'>
+        <div className='fixed inset-0 z-50 flex items-center justify-center bg-[#03030344]'>
+          <div className='relative w-full max-w-md rounded-md bg-[#f5f5f5] px-6 py-6 shadow-lg'>
             <button
               onClick={() => setIsModalOpen(false)}
               className='absolute right-4 top-4 text-gray-500 hover:text-gray-700'
@@ -292,7 +297,7 @@ function TransactionTable() {
               <span className='sr-only'>Close</span>
             </button>
 
-            <h2 className='mb-6 py-5 text-center text-[30px] font-semibold text-[#E6E6E6]'>
+            <h2 className='mb-6 py-2.5 text-center text-[30px] font-semibold text-[#000000]'>
               User Details
             </h2>
 
@@ -313,7 +318,7 @@ function TransactionTable() {
 
             <Button
               onClick={() => setIsModalOpen(false)}
-              className='mt-6 w-full bg-[#45b1b4] hover:bg-[#5ce1e6b7]'
+              className='mt-6 w-full bg-[#3a49d3] hover:bg-[#4456fd]'
             >
               Okay
             </Button>

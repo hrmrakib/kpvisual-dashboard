@@ -36,8 +36,8 @@ export default function UserDetailsModal({
   )}-${currentDate.getFullYear()}`;
 
   return (
-    <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50'>
-      <div className='relative w-full max-w-md rounded-md bg-[#000000] px-6 py-6 shadow-lg'>
+    <div className='fixed inset-0 z-50 flex items-center justify-center bg-transparent'>
+      <div className='relative w-full max-w-md rounded-md bg-[#ffffff] px-6 py-6 shadow-lg'>
         <button
           onClick={onClose}
           className='absolute right-4 top-4 text-gray-500 hover:text-gray-700'
@@ -46,7 +46,7 @@ export default function UserDetailsModal({
           <span className='sr-only'>Close</span>
         </button>
 
-        <h2 className='mb-6 py-5 text-center text-[30px] font-semibold text-[#E6E6E6]'>
+        <h2 className='mb-6 py-5 text-center text-[30px] font-semibold text-[#000000]'>
           User Details
         </h2>
 
@@ -74,8 +74,8 @@ interface DetailRowProps {
 function DetailRow({ label, value }: DetailRowProps) {
   return (
     <div className='flex justify-between border-b border-[#D1D5DB] py-2'>
-      <span className='text-[#E6E6E6]'>{label}</span>
-      <span className='font-medium text-[#E6E6E6]'>{value}</span>
+      <span className='text-[#000000]'>{label}</span>
+      <span className='font-medium text-[#000000]'>{value}</span>
     </div>
   );
 }
