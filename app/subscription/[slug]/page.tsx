@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -14,7 +14,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Switch } from "@/components/ui/switch";
 import {
   Select,
   SelectContent,
@@ -66,8 +65,25 @@ export default function EditSubscriptionPlanForm() {
     Number(params?.slug)
   );
 
-  console.log(subscriptionPlan?.ai_level);
+  console.log(subscriptionPlan);
 
+  useEffect(() => {
+    if (subscriptionPlan) {
+      setPlan({
+        name: subscriptionPlan?.name || "",
+        monthly_price: subscriptionPlan?.monthly_price || "",
+        yearly_price: subscriptionPlan?.yearly_price || 0,
+        invoice_limit: subscriptionPlan?.invoice_limit || 100,
+        bulk_upload_limit: subscriptionPlan?.bulk_upload_limit || 5,
+        ai_level: subscriptionPlan?.ai_level || "Basic",
+        can_download_report: subscriptionPlan?.can_download_report || false,
+        description: subscriptionPlan?.description || "",
+        features: subscriptionPlan?.features?.length
+          ? subscriptionPlan.features
+          : [""],
+      });
+    }
+  }, [subscriptionPlan]);
   const validateForm = (): boolean => {
     const newErrors: Partial<Record<keyof NewSubscriptionPlan, string>> = {};
 
@@ -204,7 +220,11 @@ export default function EditSubscriptionPlanForm() {
                   {/* Basic Information */}
                   <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                     <div className='space-y-2'>
-                      <Label htmlFor='ai_level'>Plan Name *</Label>
+                      <Label htmlFor='ai_level'>
+                        Plan Name *{" "}
+                        <span className='text-red-600'>Not Editable</span>
+                        {/* ({subscriptionPlan.name}) */}
+                      </Label>
                       <Select
                         value={plan.ai_level}
                         onValueChange={(value) =>
@@ -219,7 +239,7 @@ export default function EditSubscriptionPlanForm() {
                             <SelectItem
                               key={level}
                               value={level}
-                              className='text-black dark:text-white'
+                              className='!text-black dark:text-white'
                             >
                               {level}
                             </SelectItem>
@@ -242,7 +262,7 @@ export default function EditSubscriptionPlanForm() {
                         }
                       >
                         <SelectTrigger>
-                          <SelectValue />
+                          <SelectValue className='text-black dark:text-white' />
                         </SelectTrigger>
                         <SelectContent>
                           {aiLevels.map((level) => (
@@ -280,7 +300,7 @@ export default function EditSubscriptionPlanForm() {
                               monthly_price: e.target.value,
                             }))
                           }
-                          placeholder={subscriptionPlan?.ai_level}
+                          placeholder={subscriptionPlan?.monthly_price}
                           className={
                             errors.monthly_price ? "border-red-500" : ""
                           }
@@ -289,7 +309,8 @@ export default function EditSubscriptionPlanForm() {
                           type='button'
                           variant='outline'
                           size='sm'
-                          onClick={calculateYearlyFromMonthly}
+                          onClick={calculateYearlyFromMonthly} 
+                          className="border-2 border-[#29bd5a] text-[#29bd5a] hover:bg-[#29bd5a] hover:text-white"
                         >
                           Auto Yearly
                         </Button>
@@ -316,12 +337,14 @@ export default function EditSubscriptionPlanForm() {
                         onChange={(e) =>
                           setPlan((prev) => ({
                             ...prev,
-                            yearly_price:
-                              Number.parseFloat(e.target.value) || 0,
+                            yearly_price: Number.parseFloat(e.target.value),
                           }))
                         }
-                        placeholder='67.20'
+                        placeholder={`${
+                          subscriptionPlan?.monthly_price * 12 * 0.3
+                        }`}
                         className={errors.yearly_price ? "border-red-500" : ""}
+                        disabled
                       />
                       {errors.yearly_price && (
                         <p className='text-sm text-red-500'>
@@ -350,7 +373,10 @@ export default function EditSubscriptionPlanForm() {
                             invoice_limit: Number.parseInt(e.target.value) || 0,
                           }))
                         }
-                        placeholder='500'
+                        placeholder={
+                          subscriptionPlan?.invoice_limit +
+                          "dgksjhkjdzgjvkj656554654654"
+                        }
                         className={errors.invoice_limit ? "border-red-500" : ""}
                       />
                       {errors.invoice_limit && (
@@ -378,10 +404,11 @@ export default function EditSubscriptionPlanForm() {
                               Number.parseInt(e.target.value) || 0,
                           }))
                         }
-                        placeholder='10'
+                        placeholder={subscriptionPlan?.bulk_upload_limit}
                         className={
                           errors.bulk_upload_limit ? "border-red-500" : ""
                         }
+                        max={50}
                       />
                       {errors.bulk_upload_limit && (
                         <p className='text-sm text-red-500'>
@@ -408,7 +435,7 @@ export default function EditSubscriptionPlanForm() {
                           description: e.target.value,
                         }))
                       }
-                      placeholder='Brief description of the plan...'
+                      placeholder={subscriptionPlan?.description}
                       rows={3}
                     />
                   </div>
@@ -507,7 +534,7 @@ export default function EditSubscriptionPlanForm() {
 
                     <div className='text-center'>
                       <div className='text-3xl font-bold'>
-                        ${plan.monthly_price || "0.00"}
+                        ${plan.monthly_price || "0.00"} ++++++++++++
                       </div>
                       <div className='text-sm text-gray-500'>per month</div>
                       {plan.yearly_price > 0 && (
