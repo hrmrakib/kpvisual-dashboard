@@ -62,15 +62,12 @@ const EditAboutUs = () => {
 
   if (isLoading && !terms && !quillRef.current) return <span>Loading...</span>;
 
-  console.log({ content });
-
   const handleSubmit = async () => {
     try {
       const res = await updateTrustAndSafety({
         description: content,
       }).unwrap();
 
-      console.log(res);
       if (res?.description) {
         toast.success("Terms and Conditions saved successfully!");
         router.push("/setting/trust-safety");

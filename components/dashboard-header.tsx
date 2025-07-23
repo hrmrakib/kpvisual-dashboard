@@ -6,13 +6,15 @@ import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-// import { useGetProfileQuery } from "@/redux/feature/settingAPI";
+import { useGetProfileQuery } from "@/redux/feature/setting/settingAPI";
 
 export default function DashboardHeader() {
   const pathname = usePathname();
-  // const { data: userProfile, isLoading } = useGetProfileQuery(undefined, {
-  //   refetchOnMountOrArgChange: true,
-  // });
+  const { data: userProfile, isLoading } = useGetProfileQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+
+  console.log(userProfile);
 
   if (
     pathname === "/login" ||
