@@ -1,5 +1,19 @@
 import baseApi from "@/redux/api/baseAPI";
 
+interface SubscriptionPlan {
+  id: string | number;
+  name: string;
+  monthly_price: string;
+  invoice_limit: number;
+  bulk_upload_limit: number;
+  ai_level: string;
+  can_download_report: boolean;
+  info: string;
+  description: string;
+  features: string[];
+  is_popular?: boolean;
+}
+
 const subscriptionAPI = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getSubscriptionList: builder.query<any, any>({
@@ -29,6 +43,20 @@ const subscriptionAPI = baseApi.injectEndpoints({
       }),
     }),
 
+    updateSubscriptionPlan: builder.mutation<
+      any,
+      { body: SubscriptionPlan; id: string | number }
+    >({
+      query: ({ body, id }) => ({
+        url: `api/v1/subscription/plans/update/${id}/`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+        method: "PUT",
+        body,
+      }),
+    }),
+
     createSubscriptionPlan: builder.mutation<any, any>({
       query: (body) => ({
         url: "api/v1/subscription/plan/create/",
@@ -46,6 +74,7 @@ export const {
   useGetSubscriptionListQuery,
   useGetSubscriptionPlanQuery,
   useGetSubscriptionPlanByIdQuery,
+  useUpdateSubscriptionPlanMutation,
   useCreateSubscriptionPlanMutation,
 } = subscriptionAPI;
 export default subscriptionAPI;

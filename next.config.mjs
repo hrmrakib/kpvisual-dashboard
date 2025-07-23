@@ -15,12 +15,6 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
-      {
-        protocol: "https",
-        hostname: "cdn.akamai.steamstatic.com",
-        port: "",
-        pathname: "/**",
-      },
     ],
   },
 };
