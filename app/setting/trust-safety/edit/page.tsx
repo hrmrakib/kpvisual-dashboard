@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import {
   useGetPrivacyPolicyQuery,
-  useUpdatePrivacyPolicyMutation,
+  useUpdateTrustAndSafetyMutation,
 } from "@/redux/feature/setting/settingAPI";
 
 const EditAboutUs = () => {
@@ -20,8 +20,8 @@ const EditAboutUs = () => {
 
   const { data: terms, isLoading } = useGetPrivacyPolicyQuery({});
 
-  const [updatePrivacyPolicy, { isLoading: isSaving }] =
-    useUpdatePrivacyPolicyMutation();
+  const [updateTrustAndSafety, { isLoading: isSaving }] =
+    useUpdateTrustAndSafetyMutation();
 
   useEffect(() => {
     let initialized = false;
@@ -66,14 +66,14 @@ const EditAboutUs = () => {
 
   const handleSubmit = async () => {
     try {
-      const res = await updatePrivacyPolicy({
+      const res = await updateTrustAndSafety({
         description: content,
       }).unwrap();
 
       console.log(res);
       if (res?.description) {
         toast.success("Terms and Conditions saved successfully!");
-        router.push("/setting/privacy-policy");
+        router.push("/setting/trust-safety");
       } else {
         toast.error("Failed to save.");
       }

@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { useGetPrivacyPolicyQuery } from "@/redux/feature/setting/settingAPI";
+import { useGetTrustAndSafetyQuery } from "@/redux/feature/setting/settingAPI";
 import DOMPurify from "dompurify";
 
 export default function TermsConditionPage() {
-  const { data, isLoading } = useGetPrivacyPolicyQuery({});
+  const { data, isLoading } = useGetTrustAndSafetyQuery({});
 
   return (
     <div className='flex min-h-screen bg-gray-50'>
@@ -19,11 +19,11 @@ export default function TermsConditionPage() {
                 className='inline-flex items-center text-[#324de7] hover:text-teal-700'
               >
                 <ArrowLeft className='mr-2 h-4 w-4' />
-                <span className='text-xl font-semibold'>Privacy Policy</span>
+                <span className='text-xl font-semibold'>Trust and Safety</span>
               </Link>
 
               <Link
-                href='/setting/privacy-policy/edit'
+                href='/setting/trust-safety/edit'
                 className='inline-flex items-center text-[#324de7] hover:text-teal-700 border border-[#324de7] rounded-md px-4 py-1.5'
               >
                 <span className='text-xl font-semibold'>Edit</span>

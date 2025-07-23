@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import {
   useGetProfileQuery,
   useUpdateProfileMutation,
-} from "@/redux/feature/settingAPI";
+} from "@/redux/feature/setting/settingAPI";
 import { toast } from "sonner";
 
 export default function PersonalInformationEditPage() {

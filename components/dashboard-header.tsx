@@ -38,10 +38,10 @@ export default function DashboardHeader() {
       </div>
 
       <div className='flex items-center gap-4'>
-        <Link href='/notifications' className='relative text-white'>
+        {/* <Link href='/notifications' className='relative text-white'>
           <Bell className='h-6 w-6' />
           <span className='absolute right-1 top-1 flex h-2 w-2 rounded-full bg-red-500'></span>
-        </Link>
+        </Link> */}
 
         <div className='flex items-center gap-2'>
           <Link href='/setting/personal-information'>

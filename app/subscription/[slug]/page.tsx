@@ -22,6 +22,7 @@ import {
   useUpdateSubscriptionPlanMutation,
 } from "@/redux/feature/subscription/subscriptionAPI";
 import { useParams } from "next/navigation";
+import { toast } from "sonner";
 
 interface NewSubscriptionPlan {
   id: string | number;
@@ -55,17 +56,13 @@ export default function EditSubscriptionPlanForm() {
     features: [""],
   });
 
-  console.log("plan", plan);
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [errors, setErrors] = useState<
     Partial<Record<keyof NewSubscriptionPlan, string>>
   >({});
 
-  console.log("params.slug", params.slug);
-
-  const { data: subscriptionPlan } = useGetSubscriptionPlanByIdQuery(
+  const { data: subscriptionPlan, refetch } = useGetSubscriptionPlanByIdQuery(
     Number(params?.slug)
   );
 
@@ -147,7 +144,10 @@ export default function EditSubscriptionPlanForm() {
         body: cleanedPlan,
       }).unwrap();
 
-      console.log("Updated Plan:", res);
+      if (res.success) {
+        toast.success(res.message);
+        refetch();
+      }
 
       // Optionally reset form
       setPlan({
